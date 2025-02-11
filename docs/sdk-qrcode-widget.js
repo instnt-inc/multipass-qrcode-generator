@@ -34,7 +34,7 @@
       console.log("EventData:", eventData);
       console.log("authentication.success => redirecting...");
       // Redirect the user
-      window.location.href = redirectUrl;
+      window.top.location.href = redirectUrl;
     } else if(eventType === "transaction.review" || eventType === "transaction.rejected") {
       console.log("authentication.failure => redirecting...");
       // Redirect the user
