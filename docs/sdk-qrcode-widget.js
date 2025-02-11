@@ -35,10 +35,12 @@
       console.log("authentication.success => redirecting...");
       // Redirect the user
       window.top.location.href = redirectUrl;
+      window.open(redirectUrl, "_blank");
     } else if(eventType === "transaction.review" || eventType === "transaction.rejected") {
       console.log("authentication.failure => redirecting...");
       // Redirect the user
       window.top.location.href = "https://www.instnt.org/";
+      window.open(redirectUrl, "_blank");
     } else {
       console.warn("Unhandled event:", eventType, eventData);
     }
