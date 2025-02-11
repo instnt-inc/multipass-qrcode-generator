@@ -38,7 +38,7 @@
     } else if(eventType === "transaction.review" || eventType === "transaction.rejected") {
       console.log("authentication.failure => redirecting...");
       // Redirect the user
-      window.location.href = "https://www.instnt.org/";
+      window.top.location.href = "https://www.instnt.org/";
     } else {
       console.warn("Unhandled event:", eventType, eventData);
     }
