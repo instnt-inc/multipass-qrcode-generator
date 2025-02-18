@@ -10,10 +10,10 @@ This repository provides a simple **copy-and-paste** code snippet that you can e
 <div id="instnt-QR-widget"></div>
 <script 
   src="https://instnt-inc.github.io/multipass-qrcode-generator/sdk-qrcode-widget.js"
-  data-workflow-id="v1633477069641729" 
+  data-workflow-id="v##############"  
   data-invitation-type="verifier" 
-  data-action="signup"
-  data-redirect-url="URL of where to navigate the user after login">
+  data-action="authenticate"
+  data-redirect-url="Your_Website_URL">
 </script>
 ```
 

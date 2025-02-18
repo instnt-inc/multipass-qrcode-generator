@@ -71,12 +71,12 @@
 
       const qrCode = new QRCodeStyling({
         data: invitationUrl,
-        width: 200,
-        height: 200,
+        width: 225,
+        height: 225,
         image: 'https://5764175.fs1.hubspotusercontent-na1.net/hub/5764175/hubfs/Add%20a%20heading%20(1).png?width=108&height=108',
         imageOptions: {
           hideBackgroundDots: false,
-          imageSize: 1.2
+          imageSize: 1.1
         }
       });
       qrCode.append(qrDiv);
@@ -125,9 +125,9 @@
             if (eventType === 'authentication.success') {
               console.log('User authenticated => redirecting...');
               // In Angular code, we do more data handling. Here we simply redirect:
-              // window.open(redirectUrl, "_blank");
-              console.log("Redirecting to:", redirectUrl);
-              window.top.location.href = redirectUrl;
+              window.open(redirectUrl, "_blank");
+              // console.log("Redirecting to:", redirectUrl);
+              // window.top.location.href = redirectUrl;
               isPolling = false;
               clearInterval(pollInterval);
               return;
