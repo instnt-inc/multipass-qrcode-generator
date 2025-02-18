@@ -15,6 +15,7 @@ This repository provides a simple **copy-and-paste** code snippet that you can e
   data-action="signup"
   data-redirect-url="https://telesapps85.wixsite.com/omni-care/groups">
 </script>
+```
 
 ## How It Works
 
