@@ -13,7 +13,7 @@ This repository provides a simple **copy-and-paste** code snippet that you can e
   data-workflow-id="v1633477069641729" 
   data-invitation-type="verifier" 
   data-action="signup"
-  data-redirect-url="https://telesapps85.wixsite.com/omni-care/groups">
+  data-redirect-url="URL of where to navigate the user after login">
 </script>
 ```
 
