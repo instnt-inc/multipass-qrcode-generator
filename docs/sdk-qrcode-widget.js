@@ -202,12 +202,12 @@
               // Create the QR code
               const qrCode = new QRCodeStyling({
                 data: invitation_url,
-                width: 200,
-                height: 200,
+                width: 225,
+                height: 225,
                 image: 'https://5764175.fs1.hubspotusercontent-na1.net/hub/5764175/hubfs/Add%20a%20heading%20(1).png?width=108&height=108',
                 imageOptions: {
                   hideBackgroundDots: false,
-                  imageSize: 1.2
+                  imageSize: 1.1
                 }
               });
               qrCode.append(qrDiv);
@@ -221,7 +221,7 @@
       .catch(err => console.error('Error:', err));
   }
 
-  // 8. Load jQuery first, then qr-code-styling, then run generateQrCode()
+  // Load jQuery first, then qr-code-styling, then run generateQrCode()
   loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
     .then(() => loadScript('https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js'))
     .then(() => {

@@ -24,7 +24,11 @@ This repository provides a simple **copy-and-paste** code snippet that you can e
 
 - **`<script src="...sdk-qrcode-widget.js" ...>`**  
   - **Loads** the JavaScript file hosted on GitHub Pages.  
-  - **Reads** the data attributes you provide (`workflow-id`, `invitation-type`, etc.).  
+  - **Reads** the data attributes you provide and uses them to configure Instnt’s Multipass flow:  
+    - **`data-workflow-id`**: The **ID** of the Workflow you created in the Instnt dashboard (e.g., `v##############`).  
+    - **`data-invitation-type`**: Either **`verifier`** or **`issuer`**, depending if you are verifying the user or providing the credentials.  
+    - **`data-action`**: Either **`authenticate`** or **`signup`**, indicating which flow to initiate.  
+    - **`data-redirect-url`**: The URL the user will be sent to once the authentication or signup is complete.  
   - **Fetches** the transaction snippet from Instnt’s backend.  
   - **Generates** a QR code using the fetched data.  
   - **Monitors** for events (like `authentication.success`) and redirects to your specified `data-redirect-url` when triggered.
@@ -38,7 +42,7 @@ By hosting `sdk-qrcode-widget.js` on GitHub Pages, you automatically receive upd
 ## Customization
 
 - **Size of the QR Code**  
-  Inside the `sdk-qrcode-widget.js`, the QR code width and height are set to `200`. If you need a different size, you can modify the widget code or fork this repository and customize your own copy.
+  Inside the `sdk-qrcode-widget.js`, the QR code width and height are set to `225`. If you need a different size, you can modify the widget code or fork this repository and customize your own copy.
 
 - **Logo on QR Code**  
   We currently embed a default logo. To customize it, fork the repository and replace the `image` field within the JavaScript with the URL of your choice.
@@ -52,8 +56,7 @@ By hosting `sdk-qrcode-widget.js` on GitHub Pages, you automatically receive upd
    - Confirm that your `data-workflow-id` is correct.
 
 2. **Redirection Happens in a Small Iframe (e.g., Wix)**  
-   - Some site builders embed custom code in an iframe. If you need a **full-page redirect**, try opening a new tab (`_blank`) or adjusting your site’s embed settings to allow top-level navigation.  
-   - Alternatively, consider a `postMessage` approach or consult Wix’s options for allowing navigation from an embedded widget.
+   - Some site builders embed custom code in an iframe. If you need a **full-page redirect**, try opening a new tab (`_blank`) or adjusting your site’s embed settings to allow top-level navigation.
 
 3. **Errors in Console**  
    - Check your browser’s JavaScript console for any errors or warnings related to script loading or cross-domain issues.
@@ -75,5 +78,3 @@ Then host your version on your own GitHub Pages or static hosting provider.
 ## License
 
 This project is provided under the [MIT License](LICENSE). Use it as a template or reference to build your own Instnt Multipass QR integrations.
-
-
