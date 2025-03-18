@@ -82,14 +82,32 @@
         containerEl.appendChild(qrDiv);
 
         const qrCode = new QRCodeStyling({
+          // Basic setup
           data: invitationUrl,
           width: 225,
-          height: 225,
-          image: 'https://5764175.fs1.hubspotusercontent-na1.net/hub/5764175/hubfs/Add%20a%20heading%20(1).png?width=108&height=108',
-          imageOptions: {
-            hideBackgroundDots: false,
-            imageSize: 1.1
-          }
+          height: 200,
+          type: "svg",
+
+          // Background (white in the screenshot)
+          backgroundOptions: {
+            color: "#ffffff"
+          },
+
+          // Main QR “dots” styling
+          dotsOptions: {
+            color: "#000000",
+            type: "dots" // 'dots' gives the circular look
+          },
+
+          // Corner squares (outer squares) and corner dots (inner squares)
+          cornersSquareOptions: {
+            type: "square",  // 'square', 'dot', 'extra-rounded'
+            color: "#000000"
+          },
+          cornersDotOptions: {
+            type: "dot",     // 'dot' or 'square'
+            color: "#000000"
+          },
         });
         qrCode.append(qrDiv);
 
@@ -161,15 +179,23 @@
   // Main function: fetch transaction snippet, inject HTML, then either
   // handle 'signup' or 'authenticate' flow
   function generateQrCode() {
-    const endpointUrl = `${serviceUrl}/public/transactions?idmetrics_version=${idmetricsVer}&sdk=angular&sdk_version=${sdkVersion}`;
-    const payload = { form_key: workflowId };
+    try {
+      const endpointUrl = `${serviceUrl}/public/transactions?idmetrics_version=${idmetricsVer}&sdk=angular&sdk_version=${sdkVersion}`;
+      const payload = { form_key: workflowId };
 
-    fetch(endpointUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(response => response.json())
-      .then(res => {
+      fetch(endpointUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch((err) => {
+        console.log('error happened');
+        console.error('Error fetching transaction snippet:', err);
+        throw err;
+      }).then(response => response.json()).catch(err => {
+        console.log('error happened');
+        console.error('Error fetching transaction snippet:', err);
+        throw err;
+      }).then(res => {
         // Inject the Instnt snippet
         const htmlSnippet = res.html;
         const fragment = document.createRange().createContextualFragment(htmlSnippet);
@@ -201,14 +227,32 @@
 
               // Create the QR code
               const qrCode = new QRCodeStyling({
-                data: invitation_url,
+                data: invitationUrl,
                 width: 225,
-                height: 225,
-                image: 'https://5764175.fs1.hubspotusercontent-na1.net/hub/5764175/hubfs/Add%20a%20heading%20(1).png?width=108&height=108',
-                imageOptions: {
-                  hideBackgroundDots: false,
-                  imageSize: 1.1
-                }
+                height: 200,
+                type: "svg",
+
+                // Background (white in the screenshot)
+                backgroundOptions: {
+                  color: "#ffffff"
+                },
+
+                // Main QR “dots” styling
+                dotsOptions: {
+                  color: "#000000",
+                  type: "dots" // 'dots' gives the circular look
+                },
+
+                // Corner squares (outer squares) and corner dots (inner squares)
+                cornersSquareOptions: {
+                  type: "square",  // 'square', 'dot', 'extra-rounded'
+                  color: "#000000"
+                },
+                cornersDotOptions: {
+                  type: "dot",     // 'dot' or 'square'
+                  color: "#000000"
+                },
+
               });
               qrCode.append(qrDiv);
             });
@@ -218,7 +262,16 @@
           }
         }
       })
-      .catch(err => console.error('Error:', err));
+        .catch((err) => {
+          console.log('error happened');
+          console.error('Error fetching transaction snippet:', err);
+          console.error('Error:', err);
+        });
+    } catch (error) {
+      console.log('Try-catch error:', error);
+      console.error('Error:', error);
+      throw error;
+    }
   }
 
   // Load jQuery first, then qr-code-styling, then run generateQrCode()
