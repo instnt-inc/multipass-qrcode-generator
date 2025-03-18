@@ -8,7 +8,7 @@
   const redirectUrl = scriptEl.getAttribute('data-redirect-url') || 'https://www.instnt.org/';
 
   // Config
-  const serviceUrl = 'https://dev-api.instnt.org';
+  const serviceUrl = 'https://stage-api.instnt.org';
   const sdkVersion = '2.1.0-beta.2';
   const containerId = 'instnt-QR-widget'; // The <div> for snippet & QR
 
